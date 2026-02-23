@@ -1,0 +1,87 @@
+<!--Idle Game - Mitchell Anderson-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Idle Game</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="top">
+            <!--<button class="top-item">Button 1</button>-->
+            <button id="clear-save" onclick="localStorage.clear(); location.reload();" class="top-item">Clear Save Data</button>
+            <p id="population-stockpile" class="top-item">Population: (0 / 0)</p>
+            <p id="alerts" class="top-item"></p>
+            <p id="food-stockpile" class="top-item">Food: (0 / 0)</p>
+            <button id="save" onclick="saveData()" class="top-item">Save Game</button>
+        </div>
+        <div class="page"> 
+            <div class="left">
+                <p id="tasks" class="side-item" style="padding: 8px; background-color: var(--light);">Tasks</p>
+                <button id="wood-task" class="side-item task hidden">Wood: +0 / 1 sec</button>
+                <button id="stone-task" class="side-item task hidden">Stone: +0 / 2 sec</button>
+                <button id="tools-task" class="side-item task hidden">Tools: +0 / 5 sec</button>
+                <button id="food-task" class="side-item task hidden">Food: +0 / 5 sec</button>
+            </div>
+            <div class="center">
+                <div class="center-content">
+                    <div id="wood" class="center-item">
+                        <button id="wood-button" onclick="addResource('wood')" class="center-sub-item">Chop Wood</button>
+                        <div class="center-sub-item"><h5>+1 Wood</h5></div>
+                        <div class="center-sub-item"></div>
+                        <div id="wood-tasks" class="center-sub-item task-buttons hidden">
+                            <button onclick="addTask('wood', 1)" class="task-button">+</button>
+                            <button onclick="addTask('wood', -1)" class="task-button red-button">-</button>
+                        </div>
+                    </div>
+                    <div id="stone" class="center-item hidden">
+                        <button id="stone-button" onclick="addResource('stone')" class="center-sub-item">Collect Stone</button>
+                        <div class="center-sub-item"><h5>+1 Stone</h5></div>
+                        <div class="center-sub-item"></div>
+                        <div id="stone-tasks" class="center-sub-item task-buttons hidden">
+                            <button onclick="addTask('stone', 1)" class="task-button">+</button>
+                            <button onclick="addTask('stone', -1)" class="task-button red-button">-</button>
+                        </div>
+                    </div>
+                    <div id="tools" class="center-item hidden">
+                        <button id="tools-button" onclick="addResource('tools')" class="center-sub-item">Construct Tools</button>
+                        <div class="center-sub-item"><h5>+1 Tools</h5></div>
+                        <div class="center-sub-item"><h5>-5 Wood</h5><h5>-5 Stone</h5></div>
+                        <div id="tools-tasks" class="center-sub-item task-buttons hidden">
+                            <button onclick="addTask('tools', 1)" class="task-button">+</button>
+                            <button onclick="addTask('tools', -1)" class="task-button red-button">-</button>
+                        </div>
+                    </div>
+                    <div id="food" class="center-item hidden">
+                        <button id="food-button" onclick="addResource('food')" class="center-sub-item">Harvest Food</button>
+                        <div class="center-sub-item"><h5>+1 Food</h5></div>
+                        <div class="center-sub-item"><h5>-1 Tools</h5></div>
+                        <div id="food-tasks" class="center-sub-item task-buttons hidden">
+                            <button onclick="addTask('food', 1)" class="task-button">+</button>
+                            <button onclick="addTask('food', -1)" class="task-button red-button">-</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <button id="build-firepit" onclick="buyTech('build-firepit')" class="bottom-item hidden"><h1>Construct Firepit</h1><h5>-15 Wood</h5><h6>Unlocks Houses</h6></button>
+                    <button id="research-tools" onclick="buyTech('research-tools')" class="bottom-item hidden"><h1>Research Tools</h1><h5>-15 Wood</h5><h5>-25 Stone</h5><h6>Unlocks Tools</h6></button>
+                    <button id="research-agriculture" onclick="buyTech('research-agriculture')" class="bottom-item hidden"><h1>Research Agriculture</h1><h5>-30 Wood</h5><h5>-5 Tools</h5><h6>Unlocks Food</h6></button>
+                    <button id="build-house" onclick="buyTech('build-house')" class="bottom-item hidden"><h1>Build House</h1><h5>-25 Wood</h5><h5>-15 Stone</h5><h6>+1 Max Population</h6></button>
+                    <button id="build-farm" onclick="buyTech('build-farm')" class="bottom-item hidden"><h1>Build Farm</h1><h5>-75 Wood</h5><h5>-8 Tools</h5><h6>+1 Food Gain</h6></button>
+                    <button id="build-wood-stockpile" onclick="buyTech('build-wood-stockpile')" class="bottom-item hidden"><h1>Build Wood Stockpile</h1><h5>-100 Wood</h5><h6>+100 Max Wood</h6></button>
+                    <button id="build-stone-stockpile" onclick="buyTech('build-stone-stockpile')" class="bottom-item hidden"><h1>Build Stone Stockpile</h1><h5>-50 Stone</h5><h6>+50 Max Stone</h6></button>
+                    <button id="build-tools-stockpile" onclick="buyTech('build-tools-stockpile')" class="bottom-item hidden"><h1>Build Toolshed</h1><h5>-60 Wood</h5><h6>+1 Max Tools</h6></button>
+                    <button id="build-food-stockpile" onclick="buyTech('build-food-stockpile')" class="bottom-item hidden"><h1>Build Granary</h1><h5>-50 Wood</h5><h5>-25 Stone</h5><h6>+5 Max Food</h6></button>
+                </div>
+            </div>
+            <div class="right">
+                <p id="stockpiles" class="side-item" style="padding: 8px; background-color: var(--light);">Stockpiles</p>
+                <p id="wood-stockpile" class="side-item hidden">Wood: (0 / 0)</p>
+                <p id="stone-stockpile" class="side-item hidden">Stone: (0 / 0)</p>
+                <p id="tools-stockpile" class="side-item hidden">Tools: (0 / 0)</p>
+            </div>
+        </div>
+    </body>
+</html>
