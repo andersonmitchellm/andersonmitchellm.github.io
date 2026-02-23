@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mitchell Anderson - Portfolio</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            jQuery(document).ready(function($) {
+                $(".clickable-item").click(function() {
+                    window.location = $(this).data("href");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <ul style="background-color: gray">
+            <h1>Mitchell Anderson - Portfolio</h1>
+        </ul>
+        <ul class='navbar'>
+            <li><a href="index.html" style="background-color: #1D824C">Home</a></li>
+            <li><a href="untitledwordgame.html">Untitled Word Game</a></li>
+            <li><a href="skydie.html">Sky Die</a></li>
+            <li><a href="softeng.html">Gift Tax Service</a></li>
+            <li><a href="javahtml.html">Idle Game</a></li>
+            <li style="float:right"><a href="Mitchell Anderson Resume.pdf">Resume</a></li>
+        </ul>
+
+        <p>Mitchell Anderson is a Computer Science graduate with experience in C#, Java, HTML, Python, and more. Listed below is a collection of projects he's worked on in the past. He also created this website using HTML.</p>
+        <table class="center">
+            <tr>
+                <td class='clickable-item' data-href='untitledwordgame.html'>
+                    <h2>Untitled Word Game</h2>
+                    <img src="images/uwg2.png" alt="Image 1">
+                </td>
+                <td class='clickable-item' data-href='skydie.html'>
+                    <h2>Sky Die</h2>
+                    <img src="images/skydie.jpg" alt="Image 2">
+                </td>
+            </tr>
+            <tr>
+                <td class='clickable-item' data-href='softeng.html'>
+                    <h2>Gift Tax Service</h2>
+                    <img src="images/gts2.png" alt="Image 3">
+                </td>
+                <td class='clickable-item' data-href='javahtml.html'>
+                    <h2>Idle Game</h2>
+                    <img src="images/idlegame.PNG" alt="Image 4">
+                </td>
+            </tr>
+        </table> 
+    </body>
+</html> 

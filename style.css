@@ -1,0 +1,70 @@
+body {
+    background-color: #E5E5E5;
+  }
+  
+  h1, h2, p, table {
+    color: black;
+    text-align: center;
+    font-family: arial;
+  }
+  
+
+  .center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+  /* Project List */
+
+  table {
+    height: 200px;
+    width: 50%;
+  }
+
+  td {
+    padding: 25px;
+    border: 1px solid;
+    background-color: #CCCCCC;
+  }
+
+  table img {
+    width: 600px;
+  }
+
+  [data-href] { 
+    cursor: pointer; 
+  }
+
+  .clickable-item:hover {
+    background-color: darkgray;
+  }
+
+
+
+  /* Navigation Bar */
+  ul {
+    background-color: #CCCCCC;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .navbar li {
+    float: left;
+    width: 10%;
+    border-left: 1px solid #CCCCCC;
+  }
+
+  .navbar li a {
+    display: block;
+    background-color: darkgray;
+    color: black;
+    text-align: center;
+    padding: 15px 15px;
+    text-decoration: none;
+  }
+  .navbar li a:hover {
+    background-color: gray;
+  }
